@@ -1,7 +1,6 @@
 import cv2
 import os
 from math import sin, cos, radians
-import ctypes
 import time
 import pygame
 
@@ -10,8 +9,8 @@ black = (0,0,0)
 ix = 1214
 iy = 683
 
-ge = pygame.image.load('F:\Machine Learning\yuri2.bmp')
-eye = pygame.image.load('F:\Machine Learning\eyes.png')
+ge = pygame.image.load('yuri2.bmp')
+eye = pygame.image.load('eyes.png')
 def pos(gameDisplay,ge,x,y):
     gameDisplay.blit(ge,(x,y))
 
@@ -53,15 +52,14 @@ def show_yuri_image(w, h):
     return gameDisplay
     
 
-user32 = ctypes.windll.user32
-scl,scb = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
-print("Width: ",scl,"Height: ",scb) #screen metrics
+# FIXME
+scl, scb = 1366, 768
 
 camera =  cv2.VideoCapture(0)
 
 w = camera.set(3, scl/2)
 h = camera.set(4, scb/2)
-face = cv2.CascadeClassifier("F:\Machine Learning\haarcascade_frontalface_alt2.xml")
+face = cv2.CascadeClassifier("haarcascade_frontalface_alt2.xml")
 fps = camera.get(cv2.CAP_PROP_FPS)
 print("fps: ",fps)
 settings = {
